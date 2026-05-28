@@ -1,9 +1,9 @@
 import { PROTO_PATHS } from '@ciganov/contracts'
 import { GrpcOptions } from '@nestjs/microservices'
 
-export const grpcPackages = ['user.v1']
+export const grpcPackages = ['odd.v1']
 
-export const grpcProtoPaths = [PROTO_PATHS.USER]
+export const grpcProtoPaths = [PROTO_PATHS.ODD]
 
 export const grpcLoader: NonNullable<GrpcOptions['options']['loader']> = {
 	keepCase: false,

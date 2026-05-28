@@ -30,7 +30,7 @@ model Event {
   status EventStatus @default(UPCOMING)
   start  DateTime
   end    DateTime
-  isLive Boolean     @map("is_live")
+  isLive Boolean     @default(false) @map("is_live")
 
   categoryId String    @map("category_id")
   category   Category  @relation(fields: [categoryId], references: [id])

@@ -285,7 +285,7 @@ export type EventCreateInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutEventsInput
@@ -298,7 +298,7 @@ export type EventUncheckedCreateInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   categoryId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -337,7 +337,7 @@ export type EventCreateManyInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   categoryId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -483,7 +483,7 @@ export type EventCreateWithoutCategoryInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   outcomes?: Prisma.OutcomeCreateNestedManyWithoutEventInput
@@ -495,7 +495,7 @@ export type EventUncheckedCreateWithoutCategoryInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   outcomes?: Prisma.OutcomeUncheckedCreateNestedManyWithoutEventInput
@@ -548,7 +548,7 @@ export type EventCreateWithoutOutcomesInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutEventsInput
@@ -560,7 +560,7 @@ export type EventUncheckedCreateWithoutOutcomesInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   categoryId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -612,7 +612,7 @@ export type EventCreateManyCategoryInput = {
   status?: $Enums.EventStatus
   start: Date | string
   end: Date | string
-  isLive: boolean
+  isLive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }

@@ -3,6 +3,10 @@ import { ConfigModule } from '@nestjs/config'
 import { LoggerModule } from 'nestjs-pino'
 
 import { PrismaModule } from '@/infrastructure/prisma/prisma.module'
+import { RedisModule } from '@/infrastructure/redis/redis.module'
+import { CategoriesModule } from '@/modules/categories/categories.module'
+import { EventsModule } from '@/modules/events/events.module'
+import { OutcomesModule } from '@/modules/outcomes/outcomes.module'
 import { ObservabilityModule } from '@/observability/observability.module'
 
 @Module({
@@ -32,7 +36,11 @@ import { ObservabilityModule } from '@/observability/observability.module'
 			}
 		}),
 		ObservabilityModule,
-		PrismaModule
+		PrismaModule,
+		RedisModule,
+		CategoriesModule,
+		EventsModule,
+		OutcomesModule
 	],
 	controllers: [],
 	providers: []
