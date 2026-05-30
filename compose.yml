@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  odds-service:
+    container_name: odds-service
+    image: ciganov-net/odds-service:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env.production.local
+    expose:
+      - '9105'
+    volumes:
+      - ../logs/odds:/var/log/services/odds
+    networks:
+      - ciganov-net
+
+networks:
+  ciganov-net:
+    external: true
