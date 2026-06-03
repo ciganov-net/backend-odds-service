@@ -5,6 +5,8 @@ import type {
 	GetEventResponse,
 	GetEventsByCategoryRequest,
 	GetEventsByCategoryResponse,
+	GetRandomEventsRequest,
+	GetRandomEventsResponse,
 	SwitchEventLiveStateRequest,
 	SwitchEventLiveStateResponse
 } from '@ciganov/contracts/dist/gen/odd'
@@ -32,6 +34,13 @@ export class EventsController {
 		data: GetEventsByCategoryRequest
 	): Promise<GetEventsByCategoryResponse> {
 		return this.eventsService.getEventsByCategory(data)
+	}
+
+	@GrpcMethod('OddService', 'GetRandomEvents')
+	async getRandomEvents(
+		data: GetRandomEventsRequest
+	): Promise<GetRandomEventsResponse> {
+		return this.eventsService.getRandomEvents(data)
 	}
 
 	@GrpcMethod('OddService', 'SwitchEventLiveState')

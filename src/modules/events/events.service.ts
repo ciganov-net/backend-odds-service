@@ -5,6 +5,8 @@ import {
 	GetEventResponse,
 	GetEventsByCategoryRequest,
 	GetEventsByCategoryResponse,
+	GetRandomEventsRequest,
+	GetRandomEventsResponse,
 	SwitchEventLiveStateRequest,
 	SwitchEventLiveStateResponse
 } from '@ciganov/contracts/dist/gen/odd'
@@ -78,6 +80,41 @@ export class EventsService {
 					eventId: outcome.eventId
 				}))
 			}
+		}
+	}
+
+	async getRandomEvents(
+		data: GetRandomEventsRequest
+	): Promise<GetRandomEventsResponse> {
+		const { randomCount } = data
+		const count = await this.prismaService.event.count()
+
+		const skip = Math.floor(Math.random() * count)
+
+		const events = await this.prismaService.event.findMany({
+			skip,
+			take: randomCount,
+			include: {
+				outcomes: true
+			}
+		})
+		return {
+			events: events.map(event => ({
+				categoryId: event.categoryId,
+				end: dateToProto(event.end),
+				id: event.id,
+				name: event.name,
+				start: dateToProto(event.start),
+				isLive: event.isLive,
+				status: convertEnum(ProtoEventStatus, event.status),
+				outcomes: event.outcomes.map(outcome => ({
+					coefficient: outcome.coefficient.toNumber(),
+					id: outcome.id,
+					name: outcome.name,
+					isActive: outcome.isActive,
+					eventId: outcome.eventId
+				}))
+			}))
 		}
 	}
 
