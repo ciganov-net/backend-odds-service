@@ -33,17 +33,19 @@ export class CategoriesService {
 				id: category.id,
 				name: category.name,
 				slug: category.slug,
-				isActive: category.isActive
+				isActive: category.isActive,
+				description: category.description
 			}
 		}
 	}
 
 	async create(data: CreateCategoryRequest): Promise<CreateCategoryResponse> {
-		const { name, slug } = data
+		const { name, slug, description } = data
 		await this.prismaService.category.create({
 			data: {
 				name,
-				slug
+				slug,
+				description
 			}
 		})
 		return {
@@ -54,13 +56,13 @@ export class CategoriesService {
 	async getAll(): Promise<GetCategoriesResponse> {
 		const categories = await this.prismaService.category.findMany()
 		return {
-			categories: categories.map((category) => ({
+			categories: categories.map(category => ({
 				id: category.id,
 				name: category.name,
 				slug: category.slug,
-				isActive: category.isActive
+				isActive: category.isActive,
+				description: category.description
 			}))
 		}
 	}
-
 }
