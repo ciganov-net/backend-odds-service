@@ -11,9 +11,10 @@ datasource db {
 model Category {
   id String @id @default(nanoid())
 
-  slug     String  @unique
-  name     String
-  isActive Boolean @default(true) @map("is_active")
+  slug        String  @unique
+  name        String
+  description String
+  isActive    Boolean @default(true) @map("is_active")
 
   events Event[]
 
