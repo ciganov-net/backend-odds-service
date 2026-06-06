@@ -13,10 +13,14 @@ import { Injectable } from '@nestjs/common'
 import { RpcException } from '@nestjs/microservices'
 
 import { PrismaService } from '@/infrastructure/prisma/prisma.service'
+import { RedisService } from '@/infrastructure/redis/redis.service'
 
 @Injectable()
 export class OutcomesService {
-	constructor(private readonly prismaService: PrismaService) {}
+	constructor(
+		private readonly prismaService: PrismaService,
+		private readonly redisService: RedisService
+	) {}
 
 	async createOutcome(
 		data: CreateOutcomeRequest
@@ -36,13 +40,16 @@ export class OutcomesService {
 			})
 		}
 
-		await this.prismaService.outcome.create({
+		const newOutcome = await this.prismaService.outcome.create({
 			data: {
 				coefficient,
 				name,
 				event: { connect: { id: eventId } }
 			}
 		})
+
+		await this.redisService.hset(`event:amounts:${eventId}`, newOutcome.id, 0)
+		await this.redisService.hset(`event:coefficients:${eventId}`, newOutcome.id, coefficient)
 
 		return {
 			ok: true
