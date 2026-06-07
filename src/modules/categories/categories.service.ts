@@ -34,18 +34,20 @@ export class CategoriesService {
 				name: category.name,
 				slug: category.slug,
 				isActive: category.isActive,
-				description: category.description
+				description: category.description,
+				image: category.image
 			}
 		}
 	}
 
 	async create(data: CreateCategoryRequest): Promise<CreateCategoryResponse> {
-		const { name, slug, description } = data
+		const { name, slug, description, image } = data
 		await this.prismaService.category.create({
 			data: {
 				name,
 				slug,
-				description
+				description,
+				image
 			}
 		})
 		return {
@@ -61,7 +63,8 @@ export class CategoriesService {
 				name: category.name,
 				slug: category.slug,
 				isActive: category.isActive,
-				description: category.description
+				description: category.description,
+				image: category.image
 			}))
 		}
 	}

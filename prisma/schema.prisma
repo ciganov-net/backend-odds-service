@@ -14,6 +14,7 @@ model Category {
   slug        String  @unique
   name        String
   description String
+  image       String  @unique
   isActive    Boolean @default(true) @map("is_active")
 
   events Event[]
