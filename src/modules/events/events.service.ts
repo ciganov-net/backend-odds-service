@@ -5,6 +5,8 @@ import {
 	GetEventResponse,
 	GetEventsByCategoryRequest,
 	GetEventsByCategoryResponse,
+	GetEventsRequest,
+	GetEventsRequest_SortBy,
 	GetEventsResponse,
 	GetRandomEventsRequest,
 	GetRandomEventsResponse,
@@ -125,11 +127,74 @@ export class EventsService {
 		}
 	}
 
-	async getEvents(): Promise<GetEventsResponse> {
+	async getEvents(data: GetEventsRequest): Promise<GetEventsResponse> {
+		const {
+			outcomeTypes,
+			maxCoefficient,
+			minCoefficient,
+			orderBy,
+			search,
+			take,
+			skip,
+			sortOrder
+		} = data
+		const direction: 'asc' | 'desc' =
+			String(sortOrder) === '1' || sortOrder === 1 ? 'asc' : 'desc'
+		let prismaOrderBy: Record<string, any> = { createdAt: 'desc' }
+		const orderKey = orderBy as unknown as string | number
+
+		switch (orderKey) {
+			case GetEventsRequest_SortBy.NEWEST:
+			case 'NEWEST':
+				prismaOrderBy = { createdAt: direction }
+				break
+
+			case GetEventsRequest_SortBy.CLOSING_SOON:
+			case 'CLOSING_SOON':
+			default:
+				prismaOrderBy = { end: 'desc' }
+				break
+		}
+		const outcomesFilter: Record<string, any> = {}
+
+		if (minCoefficient !== undefined && minCoefficient !== null) {
+			outcomesFilter.coefficient = {
+				...outcomesFilter.coefficient,
+				gte: minCoefficient
+			}
+		}
+		if (maxCoefficient !== undefined && maxCoefficient !== null) {
+			outcomesFilter.coefficient = {
+				...outcomesFilter.coefficient,
+				lte: maxCoefficient
+			}
+		}
+
+		if (outcomeTypes && outcomeTypes.length > 0) {
+			outcomesFilter.type = { in: outcomeTypes }
+		}
 		const events = await this.prismaService.event.findMany({
-			orderBy: {
-				updatedAt: 'desc'
+			where: {
+				...(search
+					? {
+							name: {
+								contains: search,
+								mode: 'insensitive'
+							}
+						}
+					: {}),
+				status: {
+					notIn: ['CANCELLED', 'FINISHED', 'RESOLVED']
+				},
+				...(Object.keys(outcomesFilter).length > 0
+					? {
+							outcomes: {
+								some: outcomesFilter
+							}
+						}
+					: {})
 			},
+			orderBy: prismaOrderBy,
 			include: {
 				outcomes: true,
 				category: true

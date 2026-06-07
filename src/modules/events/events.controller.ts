@@ -5,6 +5,7 @@ import type {
 	GetEventResponse,
 	GetEventsByCategoryRequest,
 	GetEventsByCategoryResponse,
+	GetEventsRequest,
 	GetEventsResponse,
 	GetRandomEventsRequest,
 	GetRandomEventsResponse,
@@ -31,8 +32,8 @@ export class EventsController {
 	}
 
 	@GrpcMethod('OddService', 'GetEvents')
-	async getEvents(): Promise<GetEventsResponse> {
-		return this.eventsService.getEvents()
+	async getEvents(data: GetEventsRequest): Promise<GetEventsResponse> {
+		return this.eventsService.getEvents(data)
 	}
 
 	@GrpcMethod('OddService', 'GetEventsByCategory')
