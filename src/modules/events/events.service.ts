@@ -5,6 +5,7 @@ import {
 	GetEventResponse,
 	GetEventsByCategoryRequest,
 	GetEventsByCategoryResponse,
+	GetEventsResponse,
 	GetRandomEventsRequest,
 	GetRandomEventsResponse,
 	SwitchEventLiveStateRequest,
@@ -114,6 +115,35 @@ export class EventsService {
 					isActive: outcome.isActive,
 					eventId: outcome.eventId
 				}))
+			}))
+		}
+	}
+
+	async getEvents(): Promise<GetEventsResponse> {
+		const events = await this.prismaService.event.findMany({
+			orderBy: {
+				updatedAt: 'desc'
+			},
+			include: {
+				outcomes: true
+			}
+		})
+		return {
+			events: events.map(value => ({
+				name: value.name,
+				id: value.id,
+				isLive: value.isLive,
+				categoryId: value.categoryId,
+				outcomes: value.outcomes.map(outcome => ({
+					coefficient: outcome.coefficient.toNumber(),
+					id: outcome.id,
+					name: outcome.name,
+					isActive: outcome.isActive,
+					eventId: outcome.eventId
+				})),
+				status: convertEnum(ProtoEventStatus, value.status),
+				end: dateToProto(value.end),
+				start: dateToProto(value.start)
 			}))
 		}
 	}
