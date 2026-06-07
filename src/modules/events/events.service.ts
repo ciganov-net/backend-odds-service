@@ -56,7 +56,8 @@ export class EventsService {
 				id
 			},
 			include: {
-				outcomes: true
+				outcomes: true,
+				category: true
 			}
 		})
 		if (!event)
@@ -73,6 +74,8 @@ export class EventsService {
 				start: dateToProto(event.start),
 				isLive: event.isLive,
 				status: convertEnum(ProtoEventStatus, event.status),
+				badgeColor: event.category.badgeColor,
+				categoryTitle: event.category.name,
 				outcomes: event.outcomes.map(outcome => ({
 					coefficient: outcome.coefficient.toNumber(),
 					id: outcome.id,
@@ -96,7 +99,8 @@ export class EventsService {
 			skip,
 			take: randomCount,
 			include: {
-				outcomes: true
+				outcomes: true,
+				category: true
 			}
 		})
 		return {
@@ -108,6 +112,8 @@ export class EventsService {
 				start: dateToProto(event.start),
 				isLive: event.isLive,
 				status: convertEnum(ProtoEventStatus, event.status),
+				badgeColor: event.category.badgeColor,
+				categoryTitle: event.category.name,
 				outcomes: event.outcomes.map(outcome => ({
 					coefficient: outcome.coefficient.toNumber(),
 					id: outcome.id,
@@ -125,7 +131,8 @@ export class EventsService {
 				updatedAt: 'desc'
 			},
 			include: {
-				outcomes: true
+				outcomes: true,
+				category: true
 			}
 		})
 		return {
@@ -143,7 +150,9 @@ export class EventsService {
 				})),
 				status: convertEnum(ProtoEventStatus, value.status),
 				end: dateToProto(value.end),
-				start: dateToProto(value.start)
+				start: dateToProto(value.start),
+				badgeColor: value.category.badgeColor,
+				categoryTitle: value.category.name
 			}))
 		}
 	}
@@ -158,7 +167,8 @@ export class EventsService {
 				categoryId
 			},
 			include: {
-				outcomes: true
+				outcomes: true,
+				category: true
 			}
 		})
 		return {
@@ -170,6 +180,8 @@ export class EventsService {
 				start: dateToProto(event.start),
 				isLive: event.isLive,
 				status: convertEnum(ProtoEventStatus, event.status),
+				badgeColor: event.category.badgeColor,
+				categoryTitle: event.category.name,
 				outcomes: event.outcomes.map(outcome => ({
 					coefficient: outcome.coefficient.toNumber(),
 					id: outcome.id,

@@ -31,6 +31,7 @@ export type CategoryMinAggregateOutputType = {
   description: string | null
   image: string | null
   isActive: boolean | null
+  badgeColor: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,6 +43,7 @@ export type CategoryMaxAggregateOutputType = {
   description: string | null
   image: string | null
   isActive: boolean | null
+  badgeColor: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,6 +55,7 @@ export type CategoryCountAggregateOutputType = {
   description: number
   image: number
   isActive: number
+  badgeColor: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -66,6 +69,7 @@ export type CategoryMinAggregateInputType = {
   description?: true
   image?: true
   isActive?: true
+  badgeColor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -77,6 +81,7 @@ export type CategoryMaxAggregateInputType = {
   description?: true
   image?: true
   isActive?: true
+  badgeColor?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,6 +93,7 @@ export type CategoryCountAggregateInputType = {
   description?: true
   image?: true
   isActive?: true
+  badgeColor?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -172,6 +178,7 @@ export type CategoryGroupByOutputType = {
   description: string
   image: string
   isActive: boolean
+  badgeColor: string
   createdAt: Date
   updatedAt: Date
   _count: CategoryCountAggregateOutputType | null
@@ -204,6 +211,7 @@ export type CategoryWhereInput = {
   description?: Prisma.StringFilter<"Category"> | string
   image?: Prisma.StringFilter<"Category"> | string
   isActive?: Prisma.BoolFilter<"Category"> | boolean
+  badgeColor?: Prisma.StringFilter<"Category"> | string
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   events?: Prisma.EventListRelationFilter
@@ -216,6 +224,7 @@ export type CategoryOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   image?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  badgeColor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
@@ -231,6 +240,7 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Category"> | string
   description?: Prisma.StringFilter<"Category"> | string
   isActive?: Prisma.BoolFilter<"Category"> | boolean
+  badgeColor?: Prisma.StringFilter<"Category"> | string
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   events?: Prisma.EventListRelationFilter
@@ -243,6 +253,7 @@ export type CategoryOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   image?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  badgeColor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CategoryCountOrderByAggregateInput
@@ -260,6 +271,7 @@ export type CategoryScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Category"> | string
   image?: Prisma.StringWithAggregatesFilter<"Category"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Category"> | boolean
+  badgeColor?: Prisma.StringWithAggregatesFilter<"Category"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Category"> | Date | string
 }
@@ -271,6 +283,7 @@ export type CategoryCreateInput = {
   description: string
   image: string
   isActive?: boolean
+  badgeColor?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   events?: Prisma.EventCreateNestedManyWithoutCategoryInput
@@ -283,6 +296,7 @@ export type CategoryUncheckedCreateInput = {
   description: string
   image: string
   isActive?: boolean
+  badgeColor?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCategoryInput
@@ -295,6 +309,7 @@ export type CategoryUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUpdateManyWithoutCategoryNestedInput
@@ -307,6 +322,7 @@ export type CategoryUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUncheckedUpdateManyWithoutCategoryNestedInput
@@ -319,6 +335,7 @@ export type CategoryCreateManyInput = {
   description: string
   image: string
   isActive?: boolean
+  badgeColor?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -330,6 +347,7 @@ export type CategoryUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -341,6 +359,7 @@ export type CategoryUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -352,6 +371,7 @@ export type CategoryCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   image?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  badgeColor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -363,6 +383,7 @@ export type CategoryMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   image?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  badgeColor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -374,6 +395,7 @@ export type CategoryMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   image?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  badgeColor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -416,6 +438,7 @@ export type CategoryCreateWithoutEventsInput = {
   description: string
   image: string
   isActive?: boolean
+  badgeColor?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -427,6 +450,7 @@ export type CategoryUncheckedCreateWithoutEventsInput = {
   description: string
   image: string
   isActive?: boolean
+  badgeColor?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -454,6 +478,7 @@ export type CategoryUpdateWithoutEventsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -465,6 +490,7 @@ export type CategoryUncheckedUpdateWithoutEventsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  badgeColor?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -507,6 +533,7 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   description?: boolean
   image?: boolean
   isActive?: boolean
+  badgeColor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   events?: boolean | Prisma.Category$eventsArgs<ExtArgs>
@@ -520,6 +547,7 @@ export type CategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   description?: boolean
   image?: boolean
   isActive?: boolean
+  badgeColor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["category"]>
@@ -531,6 +559,7 @@ export type CategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   description?: boolean
   image?: boolean
   isActive?: boolean
+  badgeColor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["category"]>
@@ -542,11 +571,12 @@ export type CategorySelectScalar = {
   description?: boolean
   image?: boolean
   isActive?: boolean
+  badgeColor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "description" | "image" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "description" | "image" | "isActive" | "badgeColor" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.Category$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -566,6 +596,7 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     description: string
     image: string
     isActive: boolean
+    badgeColor: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["category"]>
@@ -998,6 +1029,7 @@ export interface CategoryFieldRefs {
   readonly description: Prisma.FieldRef<"Category", 'String'>
   readonly image: Prisma.FieldRef<"Category", 'String'>
   readonly isActive: Prisma.FieldRef<"Category", 'Boolean'>
+  readonly badgeColor: Prisma.FieldRef<"Category", 'String'>
   readonly createdAt: Prisma.FieldRef<"Category", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Category", 'DateTime'>
 }

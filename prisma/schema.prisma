@@ -16,6 +16,7 @@ model Category {
   description String
   image       String  @unique
   isActive    Boolean @default(true) @map("is_active")
+  badgeColor  String  @default("yellow")
 
   events Event[]
 

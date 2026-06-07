@@ -79,6 +79,7 @@ export const CategoryScalarFieldEnum = {
   description: 'description',
   image: 'image',
   isActive: 'isActive',
+  badgeColor: 'badgeColor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

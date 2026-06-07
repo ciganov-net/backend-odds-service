@@ -35,7 +35,8 @@ export class CategoriesService {
 				slug: category.slug,
 				isActive: category.isActive,
 				description: category.description,
-				image: category.image
+				image: category.image,
+				badgeColor: category.badgeColor
 			}
 		}
 	}
@@ -64,7 +65,8 @@ export class CategoriesService {
 				slug: category.slug,
 				isActive: category.isActive,
 				description: category.description,
-				image: category.image
+				image: category.image,
+				badgeColor: category.badgeColor
 			}))
 		}
 	}
