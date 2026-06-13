@@ -26,6 +26,15 @@ export class EventsScheduler {
 				status: 'FINISHED'
 			}
 		})
-		this.logger.info('All bets has been set to finished status')
+		await this.prismaService.event.updateMany({
+			where: {
+				start: { lte: now },
+				end: { gte: now }
+			},
+			data: {
+				status: 'LIVE'
+			}
+		})
+		this.logger.info('All bets has been set to right status')
 	}
 }

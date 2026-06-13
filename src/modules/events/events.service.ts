@@ -103,6 +103,9 @@ export class EventsService {
 			include: {
 				outcomes: true,
 				category: true
+			},
+			where: {
+				status: { in: ['UPCOMING', 'LIVE'] }
 			}
 		})
 		return {
