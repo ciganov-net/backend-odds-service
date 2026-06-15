@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
-import { OutcomesService } from './outcomes.service';
-import { OutcomesController } from './outcomes.controller';
+import { Module } from '@nestjs/common'
+
+import { OutcomesController } from './outcomes.controller'
+import { OutcomesScheduler } from './outcomes.schedule'
+import { OutcomesService } from './outcomes.service'
 
 @Module({
-  controllers: [OutcomesController],
-  providers: [OutcomesService],
+	controllers: [OutcomesController],
+	providers: [OutcomesService, OutcomesScheduler]
 })
 export class OutcomesModule {}
