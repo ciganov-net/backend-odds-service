@@ -53,6 +53,8 @@ export class OutcomesScheduler {
 				status: 'LIVE'
 			}
 		})
-		this.logger.info('All bets has been set to right status')
+		this.logger.info(
+			'All bets has been set to right status, coefficient written to correct ones'
+		)
 	}
 }
