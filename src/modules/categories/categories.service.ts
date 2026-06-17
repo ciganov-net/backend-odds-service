@@ -17,9 +17,9 @@ export class CategoriesService {
 
 	async getById(data: GetCategoryRequest): Promise<GetCategoryResponse> {
 		const { id } = data
-		const category = await this.prismaService.category.findUnique({
+		const category = await this.prismaService.category.findFirst({
 			where: {
-				id
+				OR: [{ id }, { slug: id }]
 			}
 		})
 		if (!category) {

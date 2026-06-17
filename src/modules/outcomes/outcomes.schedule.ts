@@ -34,14 +34,16 @@ export class OutcomesScheduler {
 				`event:coefficients:${outcome.eventId}`,
 				outcome.id
 			)
-			await this.prismaService.outcome.update({
-				where: {
-					id: outcome.id
-				},
-				data: {
-					coefficient: Number(coefficient)
-				}
-			})
+			if (coefficient) {
+				await this.prismaService.outcome.update({
+					where: {
+						id: outcome.id
+					},
+					data: {
+						coefficient: Number(coefficient)
+					}
+				})
+			}
 		}
 
 		await this.prismaService.event.updateMany({

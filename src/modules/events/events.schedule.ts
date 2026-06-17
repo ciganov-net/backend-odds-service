@@ -32,7 +32,8 @@ export class EventsScheduler {
 				end: { gte: now }
 			},
 			data: {
-				status: 'LIVE'
+				status: 'LIVE',
+				isLive: true
 			}
 		})
 		this.logger.info('All bets has been set to right status')
