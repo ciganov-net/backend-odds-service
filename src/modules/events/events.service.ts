@@ -1,4 +1,6 @@
 import {
+	CloseEventRequest,
+	CloseEventResponse,
 	CreateEventRequest,
 	CreateEventResponse,
 	GetEventRequest,
@@ -87,6 +89,19 @@ export class EventsService {
 				}))
 			}
 		}
+	}
+
+	async closeEvent(data: CloseEventRequest): Promise<CloseEventResponse> {
+		const { eventId } = data
+		await this.prismaService.event.update({
+			where: {
+				id: eventId
+			},
+			data: {
+				status: 'FINISHED'
+			}
+		})
+		return { ok: true }
 	}
 
 	async getRandomEvents(

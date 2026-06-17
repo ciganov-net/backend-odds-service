@@ -1,4 +1,6 @@
 import type {
+	CloseEventRequest,
+	CloseEventResponse,
 	CreateEventRequest,
 	CreateEventResponse,
 	GetEventRequest,
@@ -41,6 +43,11 @@ export class EventsController {
 		data: GetEventsByCategoryRequest
 	): Promise<GetEventsByCategoryResponse> {
 		return this.eventsService.getEventsByCategory(data)
+	}
+
+	@GrpcMethod('OddService', 'CloseEvent')
+	async closeEvent(data: CloseEventRequest): Promise<CloseEventResponse> {
+		return this.eventsService.closeEvent(data)
 	}
 
 	@GrpcMethod('OddService', 'GetRandomEvents')
