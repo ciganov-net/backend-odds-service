@@ -169,6 +169,8 @@ export class EventsService {
 
 			case GetEventsRequest_SortBy.CLOSING_SOON:
 			case 'CLOSING_SOON':
+				prismaOrderBy = { end: direction }
+				break
 			default:
 				prismaOrderBy = { end: 'desc' }
 				break
