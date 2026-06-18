@@ -15,7 +15,7 @@ export class OutcomesScheduler {
 		this.logger.setContext(OutcomesScheduler.name)
 	}
 
-	@Cron(CronExpression.EVERY_5_MINUTES)
+	@Cron(CronExpression.EVERY_MINUTE)
 	async changeCoefficients() {
 		const now = new Date()
 
